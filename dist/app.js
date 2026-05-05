@@ -4,11 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const UserRoutes_js_1 = __importDefault(require("./routes/UserRoutes.js"));
+const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-// routes
-app.use("/users", UserRoutes_js_1.default);
+app.use("/users", userRoutes_1.default);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);

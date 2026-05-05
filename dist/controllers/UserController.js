@@ -10,12 +10,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
-const User_js_1 = require("../models/User.js");
+const userModel_1 = require("../models/userModel");
 class UserController {
     static getUsers(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const users = yield User_js_1.User.getAll();
+                const users = yield userModel_1.User.getAll();
                 res.json(users);
             }
             catch (error) {
@@ -26,8 +26,8 @@ class UserController {
     static getUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { id } = req.params; // destructuring
-                const user = yield User_js_1.User.getById(Number(id));
+                const { id } = req.params;
+                const user = yield userModel_1.User.getById(Number(id));
                 res.json(user);
             }
             catch (error) {
@@ -38,9 +38,9 @@ class UserController {
     static createUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { name, email } = req.body; // destructuring
-                const newUser = new User_js_1.User(name, email);
-                const result = yield User_js_1.User.create(newUser);
+                const { name, email } = req.body;
+                const newUser = new userModel_1.User(name, email);
+                const result = yield userModel_1.User.create(newUser);
                 res.json({ message: "User created", result });
             }
             catch (error) {
@@ -53,8 +53,8 @@ class UserController {
             try {
                 const { id } = req.params;
                 const { name, email } = req.body;
-                const updatedUser = new User_js_1.User(name, email);
-                yield User_js_1.User.update(Number(id), updatedUser);
+                const updatedUser = new userModel_1.User(name, email);
+                yield userModel_1.User.update(Number(id), updatedUser);
                 res.json({ message: "User updated" });
             }
             catch (error) {
@@ -66,7 +66,7 @@ class UserController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { id } = req.params;
-                yield User_js_1.User.delete(Number(id));
+                yield userModel_1.User.delete(Number(id));
                 res.json({ message: "User deleted" });
             }
             catch (error) {

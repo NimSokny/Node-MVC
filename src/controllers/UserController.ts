@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { User } from "../models/User";
+import { User } from "../models/userModel";
 
 export class UserController {
 
@@ -14,7 +14,7 @@ export class UserController {
 
   static async getUser(req: Request, res: Response) {
     try {
-      const { id } = req.params; // destructuring
+      const { id } = req.params; 
       const user = await User.getById(Number(id));
       res.json(user);
     } catch (error) {
@@ -24,7 +24,7 @@ export class UserController {
 
   static async createUser(req: Request, res: Response) {
     try {
-      const { name, email } = req.body; // destructuring
+      const { name, email } = req.body;
 
       const newUser = new User(name, email);
       const result = await User.create(newUser);
